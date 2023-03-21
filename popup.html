@@ -20,7 +20,29 @@
     <button id = "groupBtn">Group Tabs</button>
     <button id = "sortBtn">Sort Tabs</button>
     <ul></ul>
+    
+    <h1>Custom Tabs</h1>
+    <template id="li_template_2">
+        <li>
+            <a>
+            <h3 class="customTitle">Tab Title</h3>
+            <p class="customPathname">Tab URL</p>
+            </a>
+        </li>
+    </template>
+    <ul class = "customTabsUL"></ul>
+    <div id = "customTabs">
+        <li>
+            <input type = "text" id="customTab">
+            <button id = "submitCustomTab">Add</button>
+
+        </li>
+
+    </div>
+
 
     <script src="./popup.js" type="module"></script>
+
+
   </body>
 </html>

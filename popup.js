@@ -18,15 +18,14 @@ const tabs = await chrome.tabs.query({
   ]
 });
 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator
 const collator = new Intl.Collator();
 tabs.sort((a, b) => collator.compare(a.url, b.url));
 
-
-
-
 const template = document.getElementById('li_template');
+const customTemplate = document.getElementById('li_template_2');
+
 const elements = new Set();
+const customElements = new Set();
 for (const tab of tabs) {
   const element = template.content.firstElementChild.cloneNode(true);
 
@@ -56,4 +55,26 @@ const sortBtn = document.querySelector('#sortBtn');
 sortBtn.addEventListener('click', async () => {
     const tabIds = tabs.map(({ id }) => id);
     await chrome.tabs.move(tabIds, {index: 0});
-})
+});
+
+const addTabBtn = document.querySelector('#submitCustomTab');
+addTabBtn.addEventListener('click', async () => {
+  const element = customTemplate.content.firstElementChild.cloneNode(true);
+  const url = document.querySelector("#customTab").value;
+  console.log("url is" + url);
+ 
+
+  element.querySelector('.customTitle').textContent = url;
+  element.querySelector('.customPathname').textContent = url;
+  //element.querySelector('a').addEventListener('click', async () => {
+    // need to focus window as well as the active tab
+   // await chrome.tabs.update(tab.id, { active: true });
+    //await chrome.windows.update(tab.windowId, { focused: true });
+  //});
+  elements.add(element);
+
+ 
+  document.querySelector('.customTabsUL').append(element);
+
+    
+});
