@@ -26,6 +26,7 @@ ul {
 
 li {
   padding: 0.25rem;
+  list-style-type: none;
 }
 li:nth-child(odd) {
   background: #80808030;
